@@ -1,3 +1,22 @@
 <aside class="bg-slate-800 fixed top-0 left-0 h-screen w-48 z-40">
-  sidebar
+  <a class="logo flex w-full p-4 text-3xl text-slate-50 font-bold">
+    <div class="logo-abbr w-8 bg-amber-500 rounded-md text-center">P</div>
+    <div class="title px-2">Přimá</div>
+  </a>
+
+  <nav class="p-4">
+    <ul>
+      @for (route of routerList; track route.routerTitle) {
+        <li>
+          <a
+            class="link"
+            [routerLink]="route.routerLink"
+            [routerLinkActive]="'link-active'"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >{{ route.routerTitle }}</a
+          >
+        </li>
+      }
+    </ul>
+  </nav>
 </aside>

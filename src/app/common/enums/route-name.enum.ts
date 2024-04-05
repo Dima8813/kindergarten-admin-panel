@@ -6,4 +6,5 @@ export enum RouteName {
 
   //Pages
   Content = 'content', // Todo: temp page for view default styles
+  Users = 'users',
 }

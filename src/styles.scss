@@ -7,4 +7,20 @@
   body {
     @apply bg-slate-200 text-slate-600;
   }
+
+  a {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .link {
+    @apply block mb-1 text-slate-50 p-2 rounded-md hover:bg-gray-600
+  }
+}
+
+@layer utilities {
+  .link-active {
+    @apply bg-gray-600
+  }
 }
