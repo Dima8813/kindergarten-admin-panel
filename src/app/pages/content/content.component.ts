@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './content.component.html',
 })
-export class ContentComponent {
-
-}
+export class ContentComponent {}

@@ -6,13 +6,7 @@ import { SidebarComponent } from '@layout/sidebar/sidebar.component';
 @Component({
   selector: 'app-wrap-pages',
   standalone: true,
-  imports: [
-    HeaderComponent,
-    RouterOutlet,
-    SidebarComponent
-  ],
+  imports: [HeaderComponent, RouterOutlet, SidebarComponent],
   templateUrl: './wrap-pages.component.html',
 })
-export class WrapPagesComponent {
-
-}
+export class WrapPagesComponent {}

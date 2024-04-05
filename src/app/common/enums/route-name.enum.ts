@@ -5,6 +5,5 @@ export enum RouteName {
   Registration = 'registration',
 
   //Pages
-  Content = 'content' // Todo: temp page for view default styles
-
+  Content = 'content', // Todo: temp page for view default styles
 }

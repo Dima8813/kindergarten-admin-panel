@@ -13,18 +13,18 @@ export const AuthRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'login'
+        redirectTo: 'login',
       },
       {
         path: RouteName.Login,
         component: LoginComponent,
-        title: 'Login'
+        title: 'Login',
       },
       {
         path: RouteName.Registration,
         component: RegistrationComponent,
-        title: 'Registration'
+        title: 'Registration',
       },
-    ]
-  }
-]
+    ],
+  },
+];

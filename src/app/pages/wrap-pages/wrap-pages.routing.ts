@@ -20,7 +20,7 @@ export const WrapPagesRouting: Routes = [
           import('@pages/content/content.component').then(
             m => m.ContentComponent
           ),
-      }
-    ]
-  }
-]
+      },
+    ],
+  },
+];
