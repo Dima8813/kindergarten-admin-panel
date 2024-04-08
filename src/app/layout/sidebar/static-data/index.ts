@@ -1,6 +1,6 @@
 import { RouteName } from '@common/enums';
 
-export const RouterList: any[] = [
+export const RouterList = [
   {
     routerLink: '/',
     routerTitle: 'Dashboard',

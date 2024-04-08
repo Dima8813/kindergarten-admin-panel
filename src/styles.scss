@@ -17,6 +17,10 @@
   .link {
     @apply block mb-1 text-slate-50 p-2 rounded-md hover:bg-gray-600
   }
+
+  .btn {
+    @apply block bg-slate-300 p-2 rounded-md text-slate-800 text-center font-medium hover:bg-slate-800 hover:text-white;
+  }
 }
 
 @layer utilities {

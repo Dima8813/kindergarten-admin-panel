@@ -1,4 +1,11 @@
-<header
-  class="bg-slate-200 fixed top-0 left-0 ml-48 px-6 py-4 pb-3 h-17 w-screen">
-  <h1 class="text-3xl text-slate-800 font-bold">{{ getPageTitle() }}</h1>
+<header class="bg-slate-200 fixed top-0 left-0 pl-48 py-4 pb-3 h-17 w-full">
+  <div class="flex justify-between items-center px-6">
+    <div class="header-left">
+      <h1 class="text-3xl text-slate-800 font-bold">{{ getPageTitle() }}</h1>
+    </div>
+
+    <app-dropdown-menu
+      [avatarImg]="'https://akademi.dexignlab.com/xhtml/images/user.jpg'"
+      [actionItems]="['Profile', 'Settings']"></app-dropdown-menu>
+  </div>
 </header>

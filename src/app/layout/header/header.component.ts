@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+
+import { DropdownMenuComponent } from '@shared/components';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, DropdownMenuComponent],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
