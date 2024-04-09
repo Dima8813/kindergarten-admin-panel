@@ -1,0 +1,7 @@
+@if (errors) {
+  @for (error of errors | keyvalue; track error['key']) {
+    <div class="input-error">
+      {{ error.key | errorMessage: error.value }}
+    </div>
+  }
+}

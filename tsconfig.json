@@ -26,8 +26,11 @@
       "@layout": ["./src/app/layout"],
       "@layout/*": ["./src/app/layout/*"],
       "@common": ["./src/app/common"],
-      "@common/*": ["./src/app/common/*"]
-    }
+      "@common/*": ["./src/app/common/*"],
+      "@shared": ["./src/app/shared"],
+      "@shared/*": ["./src/app/shared/*"]
+    },
+    "strictPropertyInitialization": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

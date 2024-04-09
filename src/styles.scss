@@ -14,8 +14,24 @@
 }
 
 @layer components {
+  .label {
+    @apply mb-1 text-slate-800
+  }
+
+  .input {
+    @apply w-full rounded-md bg-white text-slate-800 p-2 outline-none border focus:border-slate-800 placeholder:text-gray-500;
+  }
+
+  .input-error {
+    @apply text-sm p-2 py-1 text-red-500
+  }
+
   .link {
     @apply block mb-1 text-slate-50 p-2 rounded-md hover:bg-gray-600
+  }
+
+  .btn {
+    @apply block bg-slate-300 p-2 rounded-md text-slate-800 text-center font-medium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800 hover:text-white;
   }
 }
 
