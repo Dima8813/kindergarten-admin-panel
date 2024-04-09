@@ -1,1 +1,111 @@
-<p>registration works!</p>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <h3 class="text-center text-2xl text-slate-800 font-bold mb-6">Sign up</h3>
+  <div class="mb-4">
+    <label class="label" for="firstName">First name</label>
+    <input
+      id="firstName"
+      placeholder="First name"
+      type="firstName"
+      class="input"
+      formControlName="firstName" />
+    @if (registrationForm.controls['firstName']; as firstName) {
+      <app-input-error
+        *ngIf="firstName.dirty"
+        [errors]="firstName.errors"></app-input-error>
+    }
+  </div>
+  <div class="mb-4">
+    <label class="label" for="lastName">Last name</label>
+    <input
+      id="lastName"
+      placeholder="Last name"
+      type="lastName"
+      class="input"
+      formControlName="lastName" />
+    @if (registrationForm.controls['lastName']; as lastName) {
+      <app-input-error
+        *ngIf="lastName.dirty"
+        [errors]="lastName.errors"></app-input-error>
+    }
+  </div>
+  <div class="mb-4">
+    <label class="label" for="email">Email</label>
+    <input
+      id="email"
+      placeholder="Email"
+      type="email"
+      class="input"
+      formControlName="email" />
+    @if (registrationForm.controls['email']; as email) {
+      <app-input-error
+        *ngIf="email.dirty"
+        [errors]="email.errors"></app-input-error>
+    }
+  </div>
+  <div class="mb-4">
+    <label class="label" for="gender">Gender</label>
+    <select id="gender" required class="input" formControlName="gender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+    @if (registrationForm.controls['gender']; as gender) {
+      <app-input-error
+        *ngIf="gender.dirty"
+        [errors]="gender.errors"></app-input-error>
+    }
+  </div>
+  <div class="mb-4">
+    <label class="label" for="role">Role</label>
+    <select id="role" required class="input" formControlName="role">
+      <option value="ADMIN">Admin</option>
+      <option value="TEACHER">Teacher</option>
+      <option value="USER">User</option>
+    </select>
+    @if (registrationForm.controls['role']; as role) {
+      <app-input-error
+        *ngIf="role.dirty"
+        [errors]="role.errors"></app-input-error>
+    }
+  </div>
+  <div class="mb-4">
+    <label class="label" for="email">Phone</label>
+    <input
+      id="phone"
+      placeholder="Phone"
+      type="phone"
+      class="input"
+      formControlName="phone" />
+    @if (registrationForm.controls['phone']; as phone) {
+      <app-input-error
+        *ngIf="phone.dirty"
+        [errors]="phone.errors"></app-input-error>
+    }
+  </div>
+  <div class="mb-4">
+    <label class="label" for="email">Password</label>
+    <input
+      id="password"
+      placeholder="Password"
+      type="password"
+      class="input"
+      formControlName="password" />
+    @if (registrationForm.controls['password']; as password) {
+      <app-input-error
+        *ngIf="password.dirty"
+        [errors]="password.errors"></app-input-error>
+    }
+  </div>
+  <div class="mb-4">
+    <button class="btn w-full" [disabled]="!registrationForm.valid">
+      Confirm
+    </button>
+  </div>
+  <div class="text-center text-sm">
+    <span
+      >Already have an account
+      <a routerLink="/auth/login" class="font-bold underline hover:no-underline"
+        >Sign in</a
+      ></span
+    >
+  </div>
+</form>

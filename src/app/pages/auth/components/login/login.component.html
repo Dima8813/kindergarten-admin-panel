@@ -1,1 +1,44 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h3 class="text-center text-2xl text-slate-800 font-bold mb-6">Sign in</h3>
+  <div class="mb-4">
+    <label class="label" for="email">Email</label>
+    <input
+      id="email"
+      placeholder="Email"
+      type="email"
+      class="input"
+      formControlName="email" />
+    @if (loginForm.controls['email']; as email) {
+      <app-input-error
+        *ngIf="email.dirty"
+        [errors]="email.errors"></app-input-error>
+    }
+  </div>
+  <div class="mb-4">
+    <label class="label" for="email">Password</label>
+    <input
+      id="password"
+      placeholder="Password"
+      type="password"
+      class="input"
+      formControlName="password" />
+    @if (loginForm.controls['password']; as password) {
+      <app-input-error
+        *ngIf="password.dirty"
+        [errors]="password.errors"></app-input-error>
+    }
+  </div>
+  <div class="mb-4">
+    <button class="btn w-full" [disabled]="!loginForm.valid">Confirm</button>
+  </div>
+  <div class="text-center text-sm">
+    <span
+      >Already have an account?
+      <a
+        routerLink="/auth/registration"
+        class="font-bold underline hover:no-underline"
+        >Sign up</a
+      ></span
+    >
+  </div>
+</form>
