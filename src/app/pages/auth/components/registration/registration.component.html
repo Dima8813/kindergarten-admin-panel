@@ -1,5 +1,6 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
   <h3 class="text-center text-2xl text-slate-800 font-bold mb-6">Sign up</h3>
+
   <div class="mb-4">
     <label class="label" for="firstName">First name</label>
     <input
@@ -9,9 +10,9 @@
       class="input"
       formControlName="firstName" />
     @if (registrationForm.controls['firstName']; as firstName) {
-      <app-input-error
-        *ngIf="firstName.dirty"
-        [errors]="firstName.errors"></app-input-error>
+      @if (firstName.dirty) {
+        <app-input-error [errors]="firstName.errors"></app-input-error>
+      }
     }
   </div>
   <div class="mb-4">
@@ -23,9 +24,9 @@
       class="input"
       formControlName="lastName" />
     @if (registrationForm.controls['lastName']; as lastName) {
-      <app-input-error
-        *ngIf="lastName.dirty"
-        [errors]="lastName.errors"></app-input-error>
+      @if (lastName.dirty) {
+        <app-input-error [errors]="lastName.errors"></app-input-error>
+      }
     }
   </div>
   <div class="mb-4">
@@ -37,34 +38,37 @@
       class="input"
       formControlName="email" />
     @if (registrationForm.controls['email']; as email) {
-      <app-input-error
-        *ngIf="email.dirty"
-        [errors]="email.errors"></app-input-error>
+      @if (email.dirty) {
+        <app-input-error [errors]="email.errors"></app-input-error>
+      }
     }
   </div>
   <div class="mb-4">
     <label class="label" for="gender">Gender</label>
+
     <select id="gender" required class="input" formControlName="gender">
-      <option value="male">Male</option>
-      <option value="female">Female</option>
+      @for (gender of Gender | stringEnumToArray; track gender.value) {
+        <option [value]="gender.value">{{ gender.key }}</option>
+      }
     </select>
     @if (registrationForm.controls['gender']; as gender) {
-      <app-input-error
-        *ngIf="gender.dirty"
-        [errors]="gender.errors"></app-input-error>
+      @if (gender.dirty) {
+        <app-input-error [errors]="gender.errors"></app-input-error>
+      }
     }
   </div>
   <div class="mb-4">
     <label class="label" for="role">Role</label>
     <select id="role" required class="input" formControlName="role">
-      <option value="ADMIN">Admin</option>
-      <option value="TEACHER">Teacher</option>
-      <option value="USER">User</option>
+      @for (role of Role | stringEnumToArray; track role.value) {
+        {{ role.key }}
+        <option [value]="role.value">{{ role.key }}</option>
+      }
     </select>
     @if (registrationForm.controls['role']; as role) {
-      <app-input-error
-        *ngIf="role.dirty"
-        [errors]="role.errors"></app-input-error>
+      @if (role.dirty) {
+        <app-input-error [errors]="role.errors"></app-input-error>
+      }
     }
   </div>
   <div class="mb-4">
@@ -76,9 +80,9 @@
       class="input"
       formControlName="phone" />
     @if (registrationForm.controls['phone']; as phone) {
-      <app-input-error
-        *ngIf="phone.dirty"
-        [errors]="phone.errors"></app-input-error>
+      @if (phone.dirty) {
+        <app-input-error [errors]="phone.errors"></app-input-error>
+      }
     }
   </div>
   <div class="mb-4">
@@ -90,9 +94,9 @@
       class="input"
       formControlName="password" />
     @if (registrationForm.controls['password']; as password) {
-      <app-input-error
-        *ngIf="password.dirty"
-        [errors]="password.errors"></app-input-error>
+      @if (password.dirty) {
+        <app-input-error [errors]="password.errors"></app-input-error>
+      }
     }
   </div>
   <div class="mb-4">

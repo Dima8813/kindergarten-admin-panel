@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -6,11 +6,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { InputErrorComponent } from '@shared/input-error/input-error.component';
 import { NgIf } from '@angular/common';
 
-import { Role } from '@common/enums';
+import { Gender, Role } from '@common/enums';
+import { RegistrationService } from '../../services';
+import { RouterList } from '@layout/sidebar/static-data';
+import { StringEnumToArray } from '@shared/pipes';
 
 interface Registration {
   firstName: string;
@@ -30,13 +34,25 @@ type RegistrationFormGroup = FormGroup & {
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, InputErrorComponent, NgIf],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    InputErrorComponent,
+    NgIf,
+    StringEnumToArray,
+  ],
+  providers: [RegistrationService],
   templateUrl: './registration.component.html',
 })
 export class RegistrationComponent {
   registrationForm: FormGroup;
+  destroyRef: DestroyRef = inject(DestroyRef);
 
-  constructor() {
+  protected readonly routerList = RouterList;
+  protected readonly Gender = Gender;
+  protected readonly Role = Role;
+
+  constructor(private readonly registrationService: RegistrationService) {
     this.registrationForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
@@ -51,5 +67,14 @@ export class RegistrationComponent {
     } as RegistrationControls) as RegistrationFormGroup;
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    if (!this.registrationForm.valid) {
+      return;
+    }
+
+    this.registrationService
+      .registration(this.registrationForm.value)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe();
+  }
 }
