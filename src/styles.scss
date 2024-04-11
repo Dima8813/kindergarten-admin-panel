@@ -26,6 +26,10 @@
     @apply text-sm p-2 py-1 text-red-500
   }
 
+  .input-pending {
+    @apply text-sm p-2 py-1 text-green-500
+  }
+
   .link {
     @apply block mb-1 text-slate-50 p-2 rounded-md hover:bg-gray-600
   }

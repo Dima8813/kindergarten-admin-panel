@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+import { RouterItem } from '@common/interfaces';
 import { RouterList } from './static-data';
 
 @Component({
@@ -10,5 +12,5 @@ import { RouterList } from './static-data';
   templateUrl: './sidebar.component.html',
 })
 export class SidebarComponent {
-  public readonly routerList = RouterList;
+  public readonly routerList: RouterItem[] = RouterList;
 }

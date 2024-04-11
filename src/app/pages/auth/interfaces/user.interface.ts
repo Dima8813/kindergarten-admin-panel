@@ -7,8 +7,19 @@ export interface CreateUserDto {
   readonly email: string;
   readonly gender: Gender;
   readonly phone: string;
-  readonly role: Role;
+  readonly roles: Role;
   readonly password: string;
+}
+
+export interface LoginUserDto {
+  readonly email: string;
+  readonly password: string;
+}
+
+export interface Roles {
+  readonly id: number;
+  readonly value: Role;
+  readonly description: string;
 }
 
 export interface User {
@@ -20,6 +31,11 @@ export interface User {
   readonly phone: string;
   readonly banned: boolean;
   readonly bannedReason: string;
-  readonly role: Role[];
+  readonly roles: Roles[];
   readonly password: string;
+}
+
+export interface AuthUser {
+  readonly user: User;
+  readonly token: string;
 }

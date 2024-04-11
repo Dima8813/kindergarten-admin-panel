@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -10,6 +10,8 @@ import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 
 import { InputErrorComponent } from '@shared/input-error/input-error.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AuthService } from '../../services';
 
 interface Login {
   email: string;
@@ -26,16 +28,28 @@ type LoginFormGroup = FormGroup & { value: Login; controls: LoginControls };
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  destroyRef: DestroyRef = inject(DestroyRef);
 
-  constructor() {
+  constructor(readonly authService: AuthService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(6),
+        Validators.minLength(3),
       ]),
     } as LoginControls) as LoginFormGroup;
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    if (!this.loginForm.valid) {
+      return;
+    }
+
+    this.authService
+      .login(this.loginForm.value)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((): void => {
+        this.loginForm.reset();
+      });
+  }
 }

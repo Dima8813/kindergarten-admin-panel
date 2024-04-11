@@ -5,6 +5,7 @@ export const ERROR_MESSAGES: { [key: string]: (args?: any) => string } = {
   email: () => `It should be a valid email`,
   minlength: ({ requiredLength }) =>
     `The length should be at least ${requiredLength} characters`,
+  uniqueEmail: () => `Email field is not unique`,
 };
 
 export const VALIDATION_ERROR_MESSAGES = new InjectionToken(

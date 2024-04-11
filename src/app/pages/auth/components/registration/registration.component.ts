@@ -9,21 +9,24 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { InputErrorComponent } from '@shared/input-error/input-error.component';
-import { NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 import { Gender, Role } from '@common/enums';
-import { RegistrationService } from '../../services';
-import { RouterList } from '@layout/sidebar/static-data';
+import { AuthService } from '../../services';
 import { StringEnumToArray } from '@shared/pipes';
+import { RoleService } from '@common/services/role.service';
+import { Observable } from 'rxjs';
+import { Roles } from '../../interfaces';
+import { UniqueEmailValidator } from '@shared/validators/unique-email.validator';
 
 interface Registration {
-  firstName: string;
-  lastName: string;
-  email: string;
-  gender: string;
-  role: string;
-  phone: string;
-  password: string;
+  readonly firstName: string;
+  readonly lastName: string;
+  readonly email: string;
+  readonly gender: string;
+  readonly role: string;
+  readonly phone: string;
+  readonly password: string;
 }
 type RegistrationControls = { [key in keyof Registration]: AbstractControl };
 type RegistrationFormGroup = FormGroup & {
@@ -40,29 +43,39 @@ type RegistrationFormGroup = FormGroup & {
     InputErrorComponent,
     NgIf,
     StringEnumToArray,
+    AsyncPipe,
   ],
-  providers: [RegistrationService],
+  providers: [RoleService],
   templateUrl: './registration.component.html',
 })
 export class RegistrationComponent {
   registrationForm: FormGroup;
+  roles$: Observable<Roles[]> = this.roleService.getAll();
   destroyRef: DestroyRef = inject(DestroyRef);
 
-  protected readonly routerList = RouterList;
   protected readonly Gender = Gender;
-  protected readonly Role = Role;
 
-  constructor(private readonly registrationService: RegistrationService) {
+  constructor(
+    private readonly registrationService: AuthService,
+    private readonly roleService: RoleService,
+    private readonly uniqueEmailValidator: UniqueEmailValidator
+  ) {
     this.registrationForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.email, Validators.required]),
-      gender: new FormControl('', [Validators.required]),
+      email: new FormControl('', {
+        validators: [Validators.required],
+        asyncValidators: [
+          this.uniqueEmailValidator.validate.bind(this.uniqueEmailValidator),
+        ],
+        updateOn: 'blur',
+      }),
+      gender: new FormControl(Gender.Male, [Validators.required]),
       role: new FormControl(Role.User),
       phone: new FormControl('', [Validators.required]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(6),
+        Validators.minLength(3),
       ]),
     } as RegistrationControls) as RegistrationFormGroup;
   }
