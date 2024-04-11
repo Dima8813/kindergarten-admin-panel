@@ -3,9 +3,10 @@
     <div class="header-left">
       <h1 class="text-3xl text-slate-800 font-bold">{{ getPageTitle() }}</h1>
     </div>
-
-    <app-dropdown-menu
-      [avatarImg]="'https://akademi.dexignlab.com/xhtml/images/user.jpg'"
-      [actionItems]="['Profile', 'Settings']"></app-dropdown-menu>
+    @if (this.authService.getUserSig(); as user) {
+      <app-dropdown-menu
+        [user]="user"
+        [actionItems]="['Profile', 'Settings']"></app-dropdown-menu>
+    }
   </div>
 </header>

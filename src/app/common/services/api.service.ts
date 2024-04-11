@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from '@environments/environment.development';
 
 interface HttpClientGetOptions {
   headers?: HttpHeaders | { [header: string]: string | string[] } | undefined;
@@ -14,8 +15,7 @@ interface HttpClientGetOptions {
 })
 export class ApiService {
   public get hostUrl(): string {
-    //return environment.baseHref;
-    return 'http://localhost:3000';
+    return environment.baseHref;
   }
 
   constructor(private readonly httpService: HttpClient) {}

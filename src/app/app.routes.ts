@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { RouteName } from '@common/enums';
+import { AuthGuard } from '@common/guards';
 
 export const routes: Routes = [
   {
@@ -9,6 +10,7 @@ export const routes: Routes = [
   },
   {
     path: '',
+    canActivate: [AuthGuard()],
     loadChildren: () =>
       import('@pages/wrap-pages/wrap-pages.routing').then(
         c => c.WrapPagesRouting

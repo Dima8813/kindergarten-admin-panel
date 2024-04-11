@@ -3,13 +3,11 @@
     class="dropdown cursor-pointer"
     (click)="toggleMenu()"
     (appClickOutside)="clickedOutside()">
-    @if (!!avatarImg) {
-      <a class="block w-12 h-12 ml-2 rounded-md overflow-hidden">
-        <img [src]="avatarImg" alt="profile" />
-      </a>
-    } @else {
-      {{ toggleBtnText }}
-    }
+    <a class="block w-12 h-12 ml-2 rounded-md overflow-hidden">
+      <img
+        [src]="'https://akademi.dexignlab.com/xhtml/images/user.jpg'"
+        alt="profile" />
+    </a>
   </div>
 
   @if (isMenuOpened) {
@@ -22,8 +20,8 @@
             alt="profile" />
         </div>
         <div class="text-slate-800 font-bold">
-          <div class="name">Yulia Kudriavtseva</div>
-          <div class="role font-light text-sm">Admin</div>
+          <div class="name">{{ user()?.firstName }} {{ user()?.lastName }}</div>
+          <div class="role font-light text-sm">{{ getRoles() }}</div>
         </div>
       </div>
       <div class="dropdown__menu-body p-3">

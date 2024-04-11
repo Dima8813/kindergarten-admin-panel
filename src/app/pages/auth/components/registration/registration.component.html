@@ -41,6 +41,9 @@
       @if (email.dirty) {
         <app-input-error [errors]="email.errors"></app-input-error>
       }
+      @if (email.pending) {
+        <div class="input-pending">pending...</div>
+      }
     }
   </div>
   <div class="mb-4">
@@ -59,12 +62,16 @@
   </div>
   <div class="mb-4">
     <label class="label" for="role">Role</label>
-    <select id="role" required class="input" formControlName="role">
-      @for (role of Role | stringEnumToArray; track role.value) {
-        {{ role.key }}
-        <option [value]="role.value">{{ role.key }}</option>
-      }
-    </select>
+
+    @if (roles$ | async; as roles) {
+      <select id="role" required class="input" formControlName="role">
+        @for (role of roles; track role.value) {
+          <option [value]="role.value">{{ role.value }}</option>
+        }
+      </select>
+    } @else {
+      <p>Skills loading...</p>
+    }
     @if (registrationForm.controls['role']; as role) {
       @if (role.dirty) {
         <app-input-error [errors]="role.errors"></app-input-error>
@@ -72,7 +79,7 @@
     }
   </div>
   <div class="mb-4">
-    <label class="label" for="email">Phone</label>
+    <label class="label" for="phone">Phone</label>
     <input
       id="phone"
       placeholder="Phone"
@@ -86,7 +93,7 @@
     }
   </div>
   <div class="mb-4">
-    <label class="label" for="email">Password</label>
+    <label class="label" for="password">Password</label>
     <input
       id="password"
       placeholder="Password"
