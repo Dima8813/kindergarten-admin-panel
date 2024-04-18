@@ -27,13 +27,16 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+
+        "@typescript-eslint/no-explicit-any": "off"
       }
     },
     {
       "files": ["*.html"],
       "extends": ["plugin:@angular-eslint/template/recommended"],
-      "rules": {}
+      "rules": {
+      }
     },
     {
       "files": ["*.html"],

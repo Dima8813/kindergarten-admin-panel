@@ -37,6 +37,34 @@
   .btn {
     @apply block bg-slate-300 p-2 rounded-md text-slate-800 text-center font-medium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-800 hover:text-white;
   }
+
+  .custom-table {
+    @apply overflow-x-auto
+  }
+
+  .custom-table .table {
+    @apply table-fixed w-full #{!important}
+  }
+
+  .custom-table .table__header-cell {
+    @apply bg-slate-300 font-bold whitespace-nowrap #{!important}
+  }
+
+  .custom-table .mat-mdc-header-cell.center,
+  .custom-table .mat-mdc-header-cell.center .mat-sort-header-container,
+  .custom-table .mat-mdc-cell.center {
+    @apply text-center justify-center #{!important}
+  }
+
+  .custom-table .table__header-cell.right,
+  .custom-table .table__header-cell.right .mat-sort-header-container,
+  .custom-table .mat-mdc-cell.right{
+    @apply text-right justify-end #{!important}
+  }
+
+  .custom-table .mat-mdc-row {
+    @apply hover:bg-slate-300
+  }
 }
 
 @layer utilities {
