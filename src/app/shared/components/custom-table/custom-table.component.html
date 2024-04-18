@@ -1,0 +1,36 @@
+<div class="custom-table">
+  <table
+    mat-table
+    matSort
+    [dataSource]="dataSource"
+    (matSortChange)="announceSortChange($event)"
+    class="custom-table">
+    @for (column of withoutCustomColumns; track column['field']) {
+      <ng-container [matColumnDef]="column.field">
+        @if (column.sortable) {
+          <th
+            class="table__header-cell"
+            mat-header-cell
+            mat-sort-header
+            *matHeaderCellDef
+            [style.width.%]="column.width"
+            [ngClass]="column.align">
+            {{ column.header }}
+          </th>
+        } @else {
+          <th
+            class="table__header-cell"
+            mat-header-cell
+            *matHeaderCellDef
+            [style.width.%]="column.width"
+            [ngClass]="column.align">
+            {{ column.header }}
+          </th>
+        }
+        <td mat-cell [ngClass]="column.align" *matCellDef="let element">
+          {{ element[column.field] }}
+        </td>
+      </ng-container>
+    }
+  </table>
+</div>

@@ -1,1 +1,21 @@
-<p>users works!</p>
+<app-card [cardTitle]="'USERS LIST'">
+  <app-custom-table [dataSource]="dataSource" [columns]="columns">
+    <ng-container matColumnDef="phone">
+      <th
+        class="table__header-cell"
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header>
+        Phone
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.phone }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns | getArrayByKey: 'field'"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: columns | getArrayByKey: 'field'"></tr>
+  </app-custom-table>
+</app-card>
